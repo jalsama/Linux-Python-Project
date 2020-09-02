@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+import random
+import sys
+
+print("Monty Hall Problem Simulator") 
+tests = int(input("How many tests would you like to run?"))
+try:
+    tests=int(tests)
+except ValueError:
+    print("Not a number")
+    sys.exit(1)
+
+stay_stats = []
+switch_stats =[]
+
+for i in range(tests):
+    door = ['car', 'goat', 'goat']
+    random.shuffle(door)
+    door_selection = random.choice([0, 1, 2])
+    stay_stat = door.pop(door_selection)
+    door.remove('goat') 
+    switch_stat = door[0]
+
+    stay_stats.append(stay_stat)
+    switch_stats.append(switch_stat)
+
+print("Stay would win ", stay_stats.count('car') / tests ,"percent of experiments")
+print("Switch would win ", switch_stats.count('car') / tests , "percent of experiments")
